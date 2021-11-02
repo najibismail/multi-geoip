@@ -17,8 +17,8 @@ return [
     | GeoIP Shuffle Providers
     |--------------------------------------------------------------------------
     |
-    | Shuffle the providers to get the different providers
+    | Shuffle providers to get different providers
     |
      */
-    'shuffle_providers' => env('GEOIP_SHUFFLE_PROVIDERS', true),
+    'shuffle_providers' => env('GEOIP_SHUFFLE_PROVIDERS', false),
 ];

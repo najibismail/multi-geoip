@@ -15,9 +15,9 @@ class MultiGeoIP
     */
    public static function info(string $ip): array
    {
-      $providers = config('geoip.providers', self::$default_providers);
+      $providers = config('multi-geoip.providers', self::$default_providers);
 
-      if (config('geoip.shuffle_providers')) {
+      if (config('multi-geoip.shuffle_providers')) {
          shuffle($providers);
       }
 
@@ -58,12 +58,12 @@ class MultiGeoIP
             $reader->setIp($ip);
 
             $data['ip'] = $reader->getIp();
-            $data['country_code'] = $reader->getCountryCode() ?? self::try_other_providers('country_code');
-            $data['country'] = $reader->getCountry() ?? self::try_other_providers('country');
-            $data['city'] = $reader->getCity() ?? self::try_other_providers('city');
-            $data['zip_code'] =  $reader->getZipCode() ?? self::try_other_providers('zip_code');
-            $data['state'] =  $reader->getCountry() ?? self::try_other_providers('state');
-            $data['timezone'] =  $reader->getTimezone() ?? self::try_other_providers('timezone');
+            $data['country_code'] = $reader->getCountryCode() ?? self::try_other_providers('getCountryCode');
+            $data['country'] = $reader->getCountry() ?? self::try_other_providers('getCountry');
+            $data['city'] = $reader->getCity() ?? self::try_other_providers('getCity');
+            $data['zip_code'] =  $reader->getZipCode() ?? self::try_other_providers('getZipCode');
+            $data['state'] =  $reader->getCountry() ?? self::try_other_providers('getCountry');
+            $data['timezone'] =  $reader->getTimezone() ?? self::try_other_providers('getTimezone');
 
             break;
          } catch (\GeoIp2\Exception\AddressNotFoundException $e) {
@@ -86,7 +86,10 @@ class MultiGeoIP
     */
    private static function try_other_providers($type): string
    {
-      foreach (self::$default_providers as $provider) {
+      $providers = self::$default_providers;
+      shuffle($providers);
+
+      foreach ($providers as $provider) {
 
          try {
             $namespace = __NAMESPACE__ . "\\Providers\\$provider";
@@ -98,50 +101,11 @@ class MultiGeoIP
 
             $reader->setIp(self::$ip);
 
-            switch ($type) {
-               case 'country_code':
-                  if (is_null($reader->getCountryCode())) {
-                     continue;
-                  }
-                  $data = $reader->getCountryCode();
-                  break;
-               case 'country':
-                  if (is_null($reader->getCountry())) {
-                     continue;
-                  }
-                  $data = $reader->getCountry();
-                  break;
-               case 'city':
-                  if (is_null($reader->getCity())) {
-                     continue;
-                  }
-                  $data = $reader->getCity();
-                  break;
-               case 'zip_code':
-                  if (is_null($reader->getZipCode())) {
-                     continue;
-                  }
-                  $data = $reader->getZipCode();
-                  break;
-               case 'state':
-                  if (is_null($reader->getState())) {
-                     continue;
-                  }
-                  $data = $reader->getState();
-                  break;
-               case 'timezone':
-                  if (is_null($reader->getTimezone())) {
-                     continue;
-                  }
-                  $data = $reader->getTimezone();
-                  break;
-
-               default:
-                  $data = null;
-                  break;
+            if(is_null($reader->{$type}())){
+               continue;
             }
-
-            return $data;
+            return $reader->{$type}();
+            break;
          } catch (\GeoIp2\Exception\AddressNotFoundException $e) {
             continue;
          } catch (\MaxMind\Db\Reader\InvalidDatabaseException $e) {
