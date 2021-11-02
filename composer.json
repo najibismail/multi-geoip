@@ -1,0 +1,40 @@
+{
+    "name": "najibismail/multigeoip",
+    "description": "Get IP address information from multi providers",
+    "keywords": [
+        "laravel",
+        "geoip",
+        "multi geoip",
+        "ip information"
+    ],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Najib Ismail",
+            "email": "najibismail1986@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Najibismail\\MultiGeoIP\\": "src/"
+        },
+        "files": [
+            "src/Helpers.php"
+        ]
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "geoip2/geoip2": "~2.0",
+        "php": "^7.0|^8.0",
+        "guzzlehttp/guzzle": "^6.5|^7.0.1"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Najibismail\\MultiGeoIP\\GeoIPServiceProvider"
+            ]
+        }
+    },
+    "prefer-stable": true
+}
