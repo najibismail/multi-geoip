@@ -18,7 +18,7 @@ Get IP Information
 ## Installation
 
 ```
-composer require najibismail/multi-geoip
+composer require najibismail/multigeoip
 ```
 
 ## Publish Config File
