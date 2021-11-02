@@ -1,6 +1,6 @@
 # GeoIP
 
-[![Latest Stable Version](http://poser.pugx.org/najibismail/geoip/v)](https://packagist.org/packages/najibismail/multi-geoip) [![Total Downloads](http://poser.pugx.org/najibismail/geoip/downloads)](https://packagist.org/packages/najibismail/multi-geoip) [![License](http://poser.pugx.org/najibismail/geoip/license)](https://packagist.org/packages/najibismail/multi-geoip) [![PHP Version Require](http://poser.pugx.org/najibismail/geoip/require/php)](https://packagist.org/packages/najibismail/multi-geoip)
+[![Latest Stable Version](http://poser.pugx.org/najibismail/multigeoip/v)](https://packagist.org/packages/najibismail/multigeoip) [![Total Downloads](http://poser.pugx.org/najibismail/multigeoip/downloads)](https://packagist.org/packages/najibismail/multigeoip) [![Latest Unstable Version](http://poser.pugx.org/najibismail/multigeoip/v/unstable)](https://packagist.org/packages/najibismail/multigeoip) [![License](http://poser.pugx.org/najibismail/multigeoip/license)](https://packagist.org/packages/najibismail/multigeoip) [![PHP Version Require](http://poser.pugx.org/najibismail/multigeoip/require/php)](https://packagist.org/packages/najibismail/multigeoip)
 
 Get IP Information
 
