@@ -18,10 +18,7 @@
     "autoload": {
         "psr-4": {
             "Najibismail\\MultiGeoIP\\": "src/"
-        },
-        "files": [
-            "src/Helpers.php"
-        ]
+        }
     },
     "minimum-stability": "dev",
     "require": {

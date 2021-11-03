@@ -3,30 +3,31 @@
 namespace Najibismail\MultiGeoIP\Providers;
 
 use Exception;
+use Najibismail\MultiGeoIP\Helpers;
 
-class GeoPlugin
+class GeoPlugin extends Helpers
 {
 
     protected $ip;
     protected $reader;
 
+
     public function setIp($ip = null)
     {
 
         if (is_null($ip)) {
-            $ip = get_client_ip();
+            $ip = $this->get_client_ip();
         }
 
         $this->ip = $ip;
 
         try {
 
-            $reader = json_decode(curl('http://www.geoplugin.net/json.gp?ip=' . $this->ip), true);
+            $reader = json_decode($this->curl('http://www.geoplugin.net/json.gp?ip=' . $this->ip), true);
             $this->reader = $reader;
         } catch (\Exception $e) {
             throw new Exception($e->getMessage());
         }
-
     }
 
     public function getIp()

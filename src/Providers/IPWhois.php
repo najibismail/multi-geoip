@@ -3,8 +3,9 @@
 namespace Najibismail\MultiGeoIP\Providers;
 
 use Exception;
+use Najibismail\MultiGeoIP\Helpers;
 
-class IPWhois
+class IPWhois extends Helpers
 {
 
     protected $ip;
@@ -14,14 +15,14 @@ class IPWhois
     {
 
         if (is_null($ip)) {
-            $ip = get_client_ip();
+            $ip = $this->get_client_ip();
         }
 
         $this->ip = $ip;
 
         try {
 
-            $reader = json_decode(curl('http://ipwhois.app/json/' . $this->ip), true);
+            $reader = json_decode($this->curl('http://ipwhois.app/json/' . $this->ip), true);
             if (isset($reader['success']) && $reader['success'] == false) {
                 throw new Exception("Address Not Found");
             }
@@ -30,7 +31,6 @@ class IPWhois
         } catch (\Exception $e) {
             throw new Exception($e->getMessage());
         }
-
     }
 
     public function getIp()

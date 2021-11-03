@@ -23,7 +23,6 @@ class GeoIPServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        require_once __DIR__ . '/Helpers.php';
         
         $this->publishes([
             __DIR__ . '/Config/multi-geoip.php' => config_path('multi-geoip.php'),

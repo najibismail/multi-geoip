@@ -3,8 +3,9 @@
 namespace Najibismail\MultiGeoIP\Providers;
 
 use Exception;
+use Najibismail\MultiGeoIP\Helpers;
 
-class IPApi
+class IPApi extends Helpers
 {
 
     protected $ip;
@@ -14,13 +15,13 @@ class IPApi
     {
 
         if (is_null($ip)) {
-            $ip = get_client_ip();
+            $ip = $this->get_client_ip();
         }
 
         $this->ip = $ip;
 
         try {
-            $reader = unserialize(curl('http://ip-api.com/php/' . $this->ip));
+            $reader = unserialize($this->curl('http://ip-api.com/php/' . $this->ip));
 
             if (isset($reader['status']) && $reader['status'] == 'fail') {
                 throw new Exception("Address Not Found");

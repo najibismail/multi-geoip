@@ -1,10 +1,15 @@
 <?php
 
+namespace Najibismail\MultiGeoIP;
+
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Exception;
 
-if (!function_exists('curl')) {
-   function curl($url, $method = 'GET', $data = [])
+class Helpers
+{
+
+   public function curl($url, $method = 'GET', $data = [])
    {
       $client = new Client();
       try {
@@ -14,10 +19,8 @@ if (!function_exists('curl')) {
          throw new Exception("Unable to call");
       }
    }
-}
 
-if (!function_exists('get_client_ip')) {
-   function get_client_ip()
+   public function get_client_ip()
    {
       $server_envs = [
          'HTTP_X_ORIGINAL_FORWARDED_FOR',

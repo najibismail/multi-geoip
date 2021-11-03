@@ -3,8 +3,9 @@
 namespace Najibismail\MultiGeoIP\Providers;
 
 use Exception;
+use Najibismail\MultiGeoIP\Helpers;
 
-class IPLocation
+class IPLocation extends Helpers
 {
 
     protected $ip;
@@ -14,13 +15,13 @@ class IPLocation
     {
 
         if (is_null($ip)) {
-            $ip = get_client_ip();
+            $ip = $this->get_client_ip();
         }
 
         $this->ip = $ip;
 
         try {
-            $reader = json_decode(curl('https://api.iplocation.net/?ip=' . $this->ip), true);
+            $reader = json_decode($this->curl('https://api.iplocation.net/?ip=' . $this->ip), true);
 
             if (isset($reader['response_code"']) && $reader['response_code"'] != '200') {
                 throw new Exception("Address Not Found");

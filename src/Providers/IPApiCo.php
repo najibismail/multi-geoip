@@ -3,8 +3,9 @@
 namespace Najibismail\MultiGeoIP\Providers;
 
 use Exception;
+use Najibismail\MultiGeoIP\Helpers;
 
-class IPApiCo
+class IPApiCo extends Helpers
 {
 
     protected $ip;
@@ -14,13 +15,13 @@ class IPApiCo
     {
 
         if (is_null($ip)) {
-            $ip = get_client_ip();
+            $ip = $this->get_client_ip();
         }
 
         $this->ip = $ip;
 
         try {
-            $reader = json_decode(curl('https://ipapi.co/' . $this->ip . '/json/'), true);
+            $reader = json_decode($this->curl('https://ipapi.co/' . $this->ip . '/json/'), true);
             if (isset($reader['error']) && $reader['error'] == true) {
                 throw new Exception("Address Not Found");
             }
@@ -29,7 +30,6 @@ class IPApiCo
         } catch (\Exception $e) {
             throw new Exception($e->getMessage());
         }
-
     }
 
     public function getIp()

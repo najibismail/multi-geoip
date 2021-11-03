@@ -31,6 +31,7 @@ class MultiGeoIP
          'zip_code' => null,
          'state' => null,
          'timezone' => null,
+         'response_time' => null,
       ];
 
       /**
@@ -39,6 +40,8 @@ class MultiGeoIP
       if (Ip::is_private_ip($ip) === true) {
          return $data;
       }
+
+      $start = microtime(true);
 
       /**
        * Get ip information from provider. 
@@ -75,6 +78,7 @@ class MultiGeoIP
          }
       }
 
+      $data['response_time'] = number_format(microtime(true) - $start, 3).' seconds';
       return $data;
    }
 
