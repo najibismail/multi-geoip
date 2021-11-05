@@ -1,6 +1,6 @@
 <?php
 
-namespace Najibismail\MultiGeoIP;
+namespace Najibismail\Multigeoip;
 
 class Ip
 {

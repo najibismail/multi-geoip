@@ -1,9 +1,9 @@
 <?php
 
-namespace Najibismail\MultiGeoIP\Providers;
+namespace Najibismail\MultiGeoip\Providers;
 
 use Exception;
-use Najibismail\MultiGeoIP\Helpers;
+use Najibismail\MultiGeoip\Helpers;
 
 class IPLocation extends Helpers
 {

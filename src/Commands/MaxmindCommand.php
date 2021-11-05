@@ -1,10 +1,10 @@
 <?php
 
-namespace Najibismail\MultiGeoIP\Commands;
+namespace Najibismail\MultiGeoip\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
-use Najibismail\MultiGeoIP\Helpers;
+use Najibismail\MultiGeoip\Helpers;
 
 class MaxmindCommand extends Command
 {

@@ -1,12 +1,11 @@
 <?php
 
-namespace Najibismail\MultiGeoIP;
+namespace Najibismail\MultiGeoip;
 
 use Illuminate\Support\ServiceProvider;
 
-class GeoIPServiceProvider extends ServiceProvider
+class MultiGeoipServiceProvider extends ServiceProvider
 {
-
     const CONFIG_PATH = __DIR__ . '/Config/multi-geoip.php';
 
     /**
@@ -17,6 +16,8 @@ class GeoIPServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(self::CONFIG_PATH, 'multi-geoip');
+
+        $this->app->bind('multigeoip', Multigeoip::class);
     }
 
     /**
@@ -32,7 +33,7 @@ class GeoIPServiceProvider extends ServiceProvider
                 Commands\PublishCommand::class,
             ]);
         }
-        
+
         $this->publishes([
             self::CONFIG_PATH => config_path('multi-geoip.php'),
         ]);

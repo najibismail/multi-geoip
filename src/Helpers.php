@@ -1,6 +1,6 @@
 <?php
 
-namespace Najibismail\MultiGeoIP;
+namespace Najibismail\MultiGeoip;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
@@ -11,7 +11,10 @@ class Helpers
 
    public function curl($url, $method = 'GET', $data = [])
    {
-      $client = new Client();
+      $client = new Client([
+         'timeout' => 10.0,
+         'verify' => false,
+      ]);
       try {
          $res = $client->request($method, $url, $data);
          return $res->getBody()->getContents();
@@ -44,7 +47,7 @@ class Helpers
       return $ipaddress;
    }
 
-   public function maxmind() : object
+   public function maxmind(): object
    {
       return json_decode($this->curl('https://api.github.com/repos/hermesthecat/GeoLite-DB-Auto-Updater/releases/latest'));
    }

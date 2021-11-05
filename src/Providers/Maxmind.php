@@ -1,10 +1,10 @@
 <?php
 
-namespace Najibismail\MultiGeoIP\Providers;
+namespace Najibismail\MultiGeoip\Providers;
 
 use GeoIp2\Database\Reader;
 use GeoIp2\Exception\AddressNotFoundException;
-use Najibismail\MultiGeoIP\Helpers;
+use Najibismail\MultiGeoip\Helpers;
 use Illuminate\Support\Facades\File;
 
 

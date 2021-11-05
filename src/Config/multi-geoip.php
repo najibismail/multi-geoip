@@ -8,12 +8,12 @@ return [
     |--------------------------------------------------------------------------
     |
     | Here is the list of multi geoip providers. 
-    | Default provider is empty array,
+    | Default provider is 'all',
     | If want to run in multiple provider, put in array.
     | * Available providers: ['IPApiCo', 'IPApi', 'IPWhois', 'GeoPlugin', 'IPLocation', 'Maxmind']
     |
      */
-    'providers' => env('MULTI_GEOIP_PROVIDERS', []),
+    'providers' => env('MULTI_GEOIP_PROVIDERS', 'all'),
 
     /*
     |--------------------------------------------------------------------------
@@ -23,7 +23,7 @@ return [
     | Shuffle providers
     |
      */
-    'shuffle_providers' => env('MULTI_GEOIP_SHUFFLE_PROVIDERS', false),
+    'shuffle_providers' => env('MULTI_GEOIP_SHUFFLE_PROVIDERS', true),
 
     /*
     |--------------------------------------------------------------------------

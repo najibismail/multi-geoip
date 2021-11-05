@@ -1,6 +1,6 @@
 <?php
 
-namespace Najibismail\MultiGeoIP\Commands;
+namespace Najibismail\MultiGeoip\Commands;
 
 use Illuminate\Console\Command;
 
@@ -39,7 +39,7 @@ class PublishCommand extends Command
     {
         $this->info('[MultiGeoIP] Publishing config ...');
         $this->call('vendor:publish', [
-            '--provider' => 'Najibismail\MultiGeoIP\GeoIPServiceProvider'
+            '--provider' => 'Najibismail\MultiGeoip\GeoIPServiceProvider'
         ]);
     }
 }
