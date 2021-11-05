@@ -22,8 +22,9 @@ composer require najibismail/multigeoip
 
 ## Publish Config File
 
+
 ```
-php artisan vendor:publish --provider="Najibismail\MultiGeoIP\GeoIPServiceProvider"
+php artisan multigeoip:publish
 ```
 
 ## Download Free Maxmind DB
