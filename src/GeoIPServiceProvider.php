@@ -29,6 +29,7 @@ class GeoIPServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 Commands\MaxmindCommand::class,
+                Commands\PublishCommand::class,
             ]);
         }
         
