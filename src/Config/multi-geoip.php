@@ -33,7 +33,7 @@ return [
     |
      */
     'maxmind' => [
-        'path' => env('MULTI_GEOIP_MAXMIND__PATH', storage_path('maxmind')),
-        'database' => 'city'
+        'path' => env('MULTI_GEOIP_MAXMIND_PATH', storage_path('maxmind')),
+        'database' => env('MULTI_GEOIP_MAXMIND_DB', 'city'),
     ],
 ];

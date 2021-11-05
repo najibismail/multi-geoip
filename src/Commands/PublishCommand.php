@@ -39,7 +39,7 @@ class PublishCommand extends Command
     {
         $this->info('[MultiGeoIP] Publishing config ...');
         $this->call('vendor:publish', [
-            '--provider' => 'Najibismail\MultiGeoip\GeoIPServiceProvider'
+            '--provider' => 'Najibismail\MultiGeoip\MultiGeoipServiceProvider'
         ]);
     }
 }
