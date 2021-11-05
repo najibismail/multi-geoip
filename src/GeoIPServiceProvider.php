@@ -6,6 +6,9 @@ use Illuminate\Support\ServiceProvider;
 
 class GeoIPServiceProvider extends ServiceProvider
 {
+
+    const CONFIG_PATH = __DIR__ . '/Config/multi-geoip.php';
+
     /**
      * Register services.
      *
@@ -13,7 +16,7 @@ class GeoIPServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/Config/multi-geoip.php', 'multi-geoip');
+        $this->mergeConfigFrom(self::CONFIG_PATH, 'multi-geoip');
     }
 
     /**
@@ -23,9 +26,14 @@ class GeoIPServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                Commands\MaxmindCommand::class,
+            ]);
+        }
         
         $this->publishes([
-            __DIR__ . '/Config/multi-geoip.php' => config_path('multi-geoip.php'),
+            self::CONFIG_PATH => config_path('multi-geoip.php'),
         ]);
     }
 }

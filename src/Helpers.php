@@ -43,4 +43,9 @@ class Helpers
       }
       return $ipaddress;
    }
+
+   public function maxmind() : object
+   {
+      return json_decode($this->curl('https://api.github.com/repos/hermesthecat/GeoLite-DB-Auto-Updater/releases/latest'));
+   }
 }

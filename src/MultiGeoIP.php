@@ -5,7 +5,7 @@ namespace Najibismail\MultiGeoIP;
 class MultiGeoIP
 {
 
-   static $default_providers = ['IPApiCo', 'IPApi', 'IPWhois', 'GeoPlugin', 'IPLocation'];
+   const DEFAULT_PROVIDERS = ['IPApiCo', 'IPApi', 'IPWhois', 'GeoPlugin', 'IPLocation', 'Maxmind'];
    static $ip;
 
    /**
@@ -15,7 +15,11 @@ class MultiGeoIP
     */
    public static function info(string $ip): array
    {
-      $providers = config('multi-geoip.providers', self::$default_providers);
+      $providers = config('multi-geoip.providers');
+
+      if (sizeof($providers) == 0) {
+         $providers = self::DEFAULT_PROVIDERS;
+      }
 
       if (config('multi-geoip.shuffle_providers')) {
          shuffle($providers);
@@ -54,8 +58,8 @@ class MultiGeoIP
             $namespace = __NAMESPACE__ . "\\Providers\\$provider";
             $reader = new $namespace();
 
-            if ($provider == 'GeoIp') {
-               $reader->database('city');
+            if ($provider == 'Maxmind') {
+               $reader->database(config('multi-geoip.maxmind.database'));
             }
 
             $reader->setIp($ip);
@@ -78,7 +82,7 @@ class MultiGeoIP
          }
       }
 
-      $data['response_time'] = number_format(microtime(true) - $start, 3).' seconds';
+      $data['response_time'] = number_format(microtime(true) - $start, 3) . ' seconds';
       return $data;
    }
 
@@ -90,7 +94,7 @@ class MultiGeoIP
     */
    private static function try_other_providers($type): string
    {
-      $providers = self::$default_providers;
+      $providers = self::DEFAULT_PROVIDERS;
       shuffle($providers);
 
       foreach ($providers as $provider) {
@@ -99,13 +103,13 @@ class MultiGeoIP
             $namespace = __NAMESPACE__ . "\\Providers\\$provider";
             $reader = new $namespace();
 
-            if ($provider == 'GeoIp') {
-               $reader->database('city');
+            if ($provider == 'Maxmind') {
+               $reader->database(config('multi-geoip.maxmind.database'));
             }
 
             $reader->setIp(self::$ip);
 
-            if(is_null($reader->{$type}())){
+            if (is_null($reader->{$type}())) {
                continue;
             }
             return $reader->{$type}();

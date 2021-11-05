@@ -4,21 +4,36 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | GeoIP Providers
+    | Multi GeoIP Providers
     |--------------------------------------------------------------------------
     |
-    | Here is the list of geoip providers
+    | Here is the list of multi geoip providers. 
+    | Default provider is empty array,
+    | If want to run in multiple provider, put in array.
+    | * Available providers: ['IPApiCo', 'IPApi', 'IPWhois', 'GeoPlugin', 'IPLocation', 'Maxmind']
     |
      */
-    'providers' => env('GEOIP_PROVIDERS', ['IPApiCo', 'IPApi', 'IPWhois', 'GeoPlugin', 'IPLocation']),
+    'providers' => env('MULTI_GEOIP_PROVIDERS', []),
 
     /*
     |--------------------------------------------------------------------------
-    | GeoIP Shuffle Providers
+    | Multi GeoIP Shuffle Providers
     |--------------------------------------------------------------------------
     |
-    | Shuffle providers to get different providers
+    | Shuffle providers
     |
      */
-    'shuffle_providers' => env('GEOIP_SHUFFLE_PROVIDERS', false),
+    'shuffle_providers' => env('MULTI_GEOIP_SHUFFLE_PROVIDERS', false),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Free Maxmind GeoIP Database
+    |--------------------------------------------------------------------------
+    |
+    |
+     */
+    'maxmind' => [
+        'path' => env('MULTI_GEOIP_MAXMIND__PATH', storage_path('maxmind')),
+        'database' => 'city'
+    ],
 ];
