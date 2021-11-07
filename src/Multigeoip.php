@@ -2,7 +2,9 @@
 
 namespace Najibismail\MultiGeoip;
 
-class Multigeoip
+use Najibismail\MultiGeoip\Helpers;
+
+class Multigeoip extends Helpers
 {
     private $result;
     private $ip;
@@ -38,8 +40,15 @@ class Multigeoip
      * @param string $ip
      * @return void
      */
-    public function ip(string $ip)
+    public function ip($ip = null)
     {
+        /**
+         * Get ip automatically if ip not set
+         */
+        if (is_null($ip)) {
+            $ip = $this->get_client_ip();
+        }
+ 
         /**
          * Validate private ip
          */

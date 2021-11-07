@@ -38,7 +38,15 @@ php artisan multigeoip:maxmind-db
 ```php
 use Najibismail\MultiGeoip\Facades\Multigeoip;
 
+// Auto get an IP Address
+$ip_info = Multigeoip::ip();
+
+// [OR]
+
+// Set the IP Address
 $ip_info = Multigeoip::ip('{IP ADDRESS}');
+
+// Get the IP Address details
 $ip_info->all(); 
 $ip_info->getIp();
 $ip_info->getCountryCode();
