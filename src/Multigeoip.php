@@ -13,7 +13,8 @@ class Multigeoip
         'IPWhois',
         'GeoPlugin',
         'IPLocation',
-        'Maxmind'
+        'Maxmind',
+        'DBIp',
     ];
 
     public function __construct()

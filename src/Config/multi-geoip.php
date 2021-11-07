@@ -10,7 +10,7 @@ return [
     | Here is the list of multi geoip providers. 
     | Default provider is 'all',
     | If want to run in multiple provider, put in array.
-    | * Available providers: ['IPApiCo', 'IPApi', 'IPWhois', 'GeoPlugin', 'IPLocation', 'Maxmind']
+    | * Available providers: ['IPApiCo', 'IPApi', 'IPWhois', 'GeoPlugin', 'IPLocation', 'Maxmind', 'DBIp']
     |
      */
     'providers' => env('MULTI_GEOIP_PROVIDERS', 'all'),
