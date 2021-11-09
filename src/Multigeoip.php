@@ -2,9 +2,9 @@
 
 namespace Najibismail\MultiGeoip;
 
-use Najibismail\MultiGeoip\Helpers;
+use Najibismail\MultiGeoip\BaseMultiGeoip;
 
-class Multigeoip extends Helpers
+class Multigeoip extends BaseMultiGeoip
 {
     private $result;
     private $ip;

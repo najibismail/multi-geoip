@@ -12,7 +12,7 @@ Get IP address information from multi providers
 ## Requirements
 
 - PHP: ^7.0
-- Laravel: ~5.5,~5.6,~5.7,~5.8,~6.0,~7.0,~8.0
+- Laravel: ~6.0,~7.0,~8.0
 
 ## Installation
 To install through composer by using the following command:
@@ -57,7 +57,21 @@ $ip_info->getState();
 $ip_info->getTimezone();
 
 ```
+### Helper
+```php
+// Set the IP Address
+$ip_info = multigeoip('{IP ADDRESS}');
 
+// Get the IP Address details
+$ip_info->all(); 
+$ip_info->getIp();
+$ip_info->getCountryCode();
+$ip_info->getCountry();
+$ip_info->getCity();
+$ip_info->getZipCode();
+$ip_info->getState();
+$ip_info->getTimezone();
+```
 
 <!-- ## Changelog
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently. -->

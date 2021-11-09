@@ -4,7 +4,7 @@ namespace Najibismail\MultiGeoip\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
-use Najibismail\MultiGeoip\Helpers;
+use Najibismail\MultiGeoip\BaseMultiGeoip;
 
 class MaxmindCommand extends Command
 {
@@ -37,12 +37,12 @@ class MaxmindCommand extends Command
      *
      * @return int
      */
-    public function handle(Helpers $helpers)
+    public function handle(BaseMultiGeoip $basemultigeoip)
     {
         $this->output->writeln(PHP_EOL);
         $this->output->writeln('<info>Downloading maxmind db.....</info>' . PHP_EOL);
 
-        $maxmind = $helpers->maxmind();
+        $maxmind = $basemultigeoip->maxmind();
 
         if (isset($maxmind->assets)) {
             $bar = $this->output->createProgressBar(collect($maxmind->assets)->count());

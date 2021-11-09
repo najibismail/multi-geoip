@@ -3,9 +3,9 @@
 namespace Najibismail\MultiGeoip\Providers;
 
 use Exception;
-use Najibismail\MultiGeoip\Helpers;
+use Najibismail\MultiGeoip\BaseMultiGeoip;
 
-class IPApi extends Helpers
+class IPApi extends BaseMultiGeoip
 {
 
     protected $ip;

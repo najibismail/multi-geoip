@@ -4,11 +4,11 @@ namespace Najibismail\MultiGeoip\Providers;
 
 use GeoIp2\Database\Reader;
 use GeoIp2\Exception\AddressNotFoundException;
-use Najibismail\MultiGeoip\Helpers;
+use Najibismail\MultiGeoip\BaseMultiGeoip;
 use Illuminate\Support\Facades\File;
 
 
-class Maxmind extends Helpers
+class Maxmind extends BaseMultiGeoip
 {
     protected $record;
     protected $ip;
