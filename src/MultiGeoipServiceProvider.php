@@ -17,7 +17,12 @@ class MultiGeoipServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(self::CONFIG_PATH, 'multi-geoip');
 
-        $this->app->bind('multigeoip', Multigeoip::class);
+        $this->app->bind('multigeoip', function () {
+            return new Multigeoip();
+        });
+
+        $this->app->alias('multigeoip', Multigeoip::class);
+
     }
 
     /**
