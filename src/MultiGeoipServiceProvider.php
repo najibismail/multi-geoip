@@ -3,6 +3,7 @@
 namespace Najibismail\MultiGeoip;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Console\Scheduling\Schedule;
 
 class MultiGeoipServiceProvider extends ServiceProvider
 {
@@ -37,6 +38,10 @@ class MultiGeoipServiceProvider extends ServiceProvider
                 Commands\MaxmindCommand::class,
                 Commands\PublishCommand::class,
             ]);
+
+            $this->app->afterResolving(Schedule::class, function (Schedule $schedule) {
+                $schedule->command(Commands\MaxmindCommand::class)->dailyAt('05:00');
+            });
         }
 
         $this->publishes([
