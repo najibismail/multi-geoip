@@ -59,6 +59,12 @@ $ip_info->getTimezone();
 ```
 ### Helper
 ```php
+
+// Auto get an IP Address
+$ip_info = multigeoip();
+
+// [OR]
+
 // Set the IP Address
 $ip_info = multigeoip('{IP ADDRESS}');
 
